@@ -6,7 +6,7 @@ env:
   global:
     - REGISTRY_USER=ocadotechnologygitlab
     - VCS_SOURCE="https://github.com/${TRAVIS_REPO_SLUG}"
-  # - secure: ""
+    - secure: "fo4sSGNcqyacyPsJAmw+M6TaKV7rW/mKj1ncXTss4oifRCa27tiXHpAeGyH1RaEaUVyqJIg6TD51EXCilaN+Sb6WSsShnQMLUGwRj4zEEVraP/bpGdbtRMvFU7FIfetMuGPVB6N2pVS4Wv+9nSyP4KetuHuGWjAU5ODF8ETXcP/pDuSNcznAFUVNLCSjFoE3P+v27Q3KhWwfd0YfJRuThzWGzc/mhnd50x94e9zoUtk0zj7FdjbKqHrHV+v5oyCQlA7M8XqMfwLVlTFnKHZzl3MPp8/VrJhiynnysmD5VVtUxviiD8e1SM43mMARZ4ZnAnNq26NjcM478sq4oUdpdQH2yIjwLfbmgWWJg0R/aevUe+vhBf7ghGfR76Lb+4njDW2qRy4Qu+Aebb/yMEHedC/ucpDvbS2hDs+rivbsCEUKT19xp4jHMiN3BAfT6hA2EU+L9ZaERiHJ1QjlmfzeA9mI99Er2RR9fkPfslcZpqi9Ashbo9Khj1dmkXmtw/jN5jA9tczVv5ZBYp/RjgKCoMWXxs3VFwzTd8Dn3kpA89WmCwgfxurMf8QOXGho+dPHGMk9fME1VFVsrsMc3Nl8e/ejyn8kxJ6NodkaumkkutF4mOM88Ersdx2w1MbASHOVW2eJxdTt09NE7d/OTg3hDZu0BzzFiMdoqoE8Q2Esuio="
 install:
   - curl -L https://github.com/progrium/basht/releases/download/v0.1.0/basht_0.1.0_Linux_x86_64.tgz | tar -xz
 script:

@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/ocadotechnology/weave-wiper.svg?branch=master)](https://travis-ci.org/ocadotechnology/weave-wiper)
+
 # Weave wIPer
 
 Mitigation container for leaking IP addresses by weave.
