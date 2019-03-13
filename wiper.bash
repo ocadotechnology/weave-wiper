@@ -111,7 +111,7 @@ T_ids_wrong_files_validation_emptyfile() {
 T_ids_file_validation() {
   local result=0
   ids_file_validation test/docker-ids || result=${?}
-  [[ ${result} != 0 ]]
+  [[ ${result} == 0 ]]
 }
 
 ids_file_validation() {
