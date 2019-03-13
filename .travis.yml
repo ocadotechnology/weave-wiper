@@ -1,0 +1,22 @@
+language: minimal
+sudo: required
+services:
+  - docker
+env:
+  global:
+    - REGISTRY_USER=ocadotechnologygitlab
+    - VCS_SOURCE="https://github.com/${TRAVIS_REPO_SLUG}"
+  # - secure: ""
+install:
+  - curl -L https://github.com/progrium/basht/releases/download/v0.1.0/basht_0.1.0_Linux_x86_64.tgz | tar -xz
+script:
+  - ./basht wiper.bash
+  - ./.travis/docker-build.sh
+after_script:
+  - docker images
+deploy:
+  provider: script
+  script: ./.travis/docker-push.sh
+  on:
+    branch: master
+    tags: true
