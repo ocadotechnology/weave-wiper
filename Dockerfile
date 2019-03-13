@@ -1,7 +1,8 @@
 FROM alpine:3.9
 
 RUN apk add --no-cache jq \
-    curl
+    curl \
+    bash
 
 COPY . /app
 WORKDIR /app
