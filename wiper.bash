@@ -120,7 +120,10 @@ ids_file_validation() {
     log_this "ERROR" "ERROR: container list file ${file_to_validate} not found"
     return 1
   fi
-  if [[ ! -s ${file_to_validate} ]]; then
+  if [[ ! -s ${file_to_validate} ]] && [[ $(basename ${file_to_validate}) == "weave-ids" ]]; then
+    log_this "WARNING" "WARNING: container list file ${file_to_validate} is empty!"
+    return 0
+  elif [[ ! -s ${file_to_validate} ]]; then
     log_this "ERROR" "ERROR: container list file ${file_to_validate} is empty!"
     return 1
   fi
