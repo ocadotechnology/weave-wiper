@@ -129,7 +129,7 @@ ids_file_validation() {
   fi
   for id in $(cat ${file_to_validate}); do
     if [[ ! "${id}" =~ ^[0-9a-f]*$ ]]; then
-      log_this "ERROR" "ERROR: Wrong container id in docker ids file: ${id}"
+      log_this "ERROR" "ERROR: Wrong container id in ids file ${file_to_validate}: ${id}"
       return 1
     fi
   done;
