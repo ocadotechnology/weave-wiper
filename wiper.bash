@@ -58,9 +58,15 @@ T_get_weave_ids() {
   [[ "${result}" = "$(cat test/weave-ids)" ]]
 }
 
+T_get_weave_ids_with_ips() {
+  local result=0
+  result=$(cat test/curl-weave-with-ips | get_weave_ids)
+  [[ "${result}" = "$(cat test/weave-ids-with-ips)" ]]
+}
+
 get_weave_ids() {
   # The special container with ID "weave:expose" shouldn't be in the list 
-  jq -r '.owned[]?.containerid' | sort | sed '/expose/d'
+  jq -r '.owned[]?.containerid' | sort | sed -E '/expose/d; /(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])/d'
 }
 
 get_weave_containers() {
