@@ -58,12 +58,6 @@ T_get_weave_ids() {
   [[ "${result}" = "$(cat test/weave-ids)" ]]
 }
 
-T_get_weave_ids_with_ips() {
-  local result=0
-  result=$(cat test/curl-weave-with-ips | get_weave_ids)
-  [[ "${result}" = "$(cat test/weave-ids-with-ips)" ]]
-}
-
 get_weave_ids() {
   # The special container with ID "weave:expose" shouldn't be in the list 
   jq -r '.owned[]?.containerid' | sort | sed '/expose/d'
@@ -122,7 +116,6 @@ T_ids_file_validation() {
 
 ids_file_validation() {
   local file_to_validate="${1}"
-  # local ip_regex = "^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])$"
   if [[ ! -f ${file_to_validate} ]]; then
     log_this "ERROR" "ERROR: container list file ${file_to_validate} not found"
     return 1
@@ -135,7 +128,7 @@ ids_file_validation() {
     return 1
   fi
   for id in $(cat ${file_to_validate}); do
-    if [[ ! "${id}" =~ ^([0-9a-f]*|^(([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5])\.){3}([0-9]|[1-9][0-9]|1[0-9]{2}|2[0-4][0-9]|25[0-5]))$ ]]; then
+    if [[ ! "${id}" =~ ^[0-9a-f]*$ ]]; then
       log_this "ERROR" "ERROR: Wrong container id in ids file ${file_to_validate}: ${id}"
       return 1
     fi
