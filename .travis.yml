@@ -1,4 +1,6 @@
-language: minimal
+language: node_js
+node_js:
+  - "6"
 sudo: required
 services:
   - docker
@@ -7,9 +9,12 @@ env:
     - REGISTRY_USER=ocadotechnologygitlab
     - VCS_SOURCE="https://github.com/${TRAVIS_REPO_SLUG}"
     - secure: "fo4sSGNcqyacyPsJAmw+M6TaKV7rW/mKj1ncXTss4oifRCa27tiXHpAeGyH1RaEaUVyqJIg6TD51EXCilaN+Sb6WSsShnQMLUGwRj4zEEVraP/bpGdbtRMvFU7FIfetMuGPVB6N2pVS4Wv+9nSyP4KetuHuGWjAU5ODF8ETXcP/pDuSNcznAFUVNLCSjFoE3P+v27Q3KhWwfd0YfJRuThzWGzc/mhnd50x94e9zoUtk0zj7FdjbKqHrHV+v5oyCQlA7M8XqMfwLVlTFnKHZzl3MPp8/VrJhiynnysmD5VVtUxviiD8e1SM43mMARZ4ZnAnNq26NjcM478sq4oUdpdQH2yIjwLfbmgWWJg0R/aevUe+vhBf7ghGfR76Lb+4njDW2qRy4Qu+Aebb/yMEHedC/ucpDvbS2hDs+rivbsCEUKT19xp4jHMiN3BAfT6hA2EU+L9ZaERiHJ1QjlmfzeA9mI99Er2RR9fkPfslcZpqi9Ashbo9Khj1dmkXmtw/jN5jA9tczVv5ZBYp/RjgKCoMWXxs3VFwzTd8Dn3kpA89WmCwgfxurMf8QOXGho+dPHGMk9fME1VFVsrsMc3Nl8e/ejyn8kxJ6NodkaumkkutF4mOM88Ersdx2w1MbASHOVW2eJxdTt09NE7d/OTg3hDZu0BzzFiMdoqoE8Q2Esuio="
+    - secure: "boAIXq9olBkvHV/xxDMYvWR7JYyy5p0tapGrPBDh+KKzJWQ28rRmazQUAJXzWs8wFs2UmUMJAu1I1E6JAVUWi5k8Z+BUSklNpxirejyRhA00faIMF31W13r1ko/Ejhwzd6xGZ0mxrorSOwO1rjZWIKVOogKy7KhX3UbfmMO7RNRx4pBJSoA326MUtdttasSlRBZTVlOqUDsTZVj4aohcFNvilzGx9H56xey7HfF1rn6j8yYVXqaDX6NA+Y1BJFp7gfBKQ2od5aDhD1PZKiAowppEqN6Nh5d7PteGI7zpdcP8xvji14X7c7TK6FJ6IUQ1/uojgEzjYcwvebyvv70FJ/POF2hjNJIbf8sqf7r7jxgb/XELGIBxDVKt3C9N8osLMDPSu6eaYwIZZ1xqJLo3u7/klgvMwC34eWD+4uJS17A0wWqi55Pd1aiDojB66tOoHSTo6Jt2CqOSp15DODwuNEIBRl8q2WOYqIweGuExNoUfJqV0LPpNH2OFz5Pxy0heP3TZD+ePe14Yethb+pXuHRPY1b9n9AG8rhCwUTleL1VXkkqb1svjM/THxvP1Ckb8bVPzrcgq69YpjaDTqjTMoEVpkBkh9tmFO7f2qpCWPqA90Srs/It1W3PMMmqO8HE4deGfnWDdfwwvdiIxWK8U8qX8ZGd4LRRoCpIUq8Vvc90="
+    - secure: "PVNMbTnqMeYEdoylQSc21cl5wrpN3wjutexOyFO2+3QjVjnXW274tClSPwj6TogQ5SSVk7JBgsFqOQh1qETAhIuqxgFZaElSQvxnJPr7+4oWELGRomkCnLlFt1J1Ng2t8LJxW8r49JkVHmv+v709nScjx7Y0Gkn7vkelDthDaZMd6fjPka2QaFPHYK1dHWRTY1OTunVk8cHuOikLHluOL2ryzFBoX2cGns7DW2+SMolLORQeCqZlm3z4Ltn5oA57JMGsTMsUNQmp+I8qAsLBDI3SpRiQVU7FHaXxlHMy5zaPbkSt0NVwU4Gl5TRdoRi8D4CIuiavRt7lIts0FbG9epUYL9+oeTojDJ2TXRpdagSaalNe6QfPJd6kPE5PnBUWzIcI91XfPi2lLuI+cucQ6OdZ8OfvNog3GW/LPS8Z2OO9pXk+DdeLHAoCoEUUc2qCsPJnfJC1zIURXjB9jLDYDmBlKynz8ECzAFhnv7A6aCu0m1a0fUuqLrUnlZ+/D0jnId7XXQIXnmdjunKAvJDZycb+YstZRnT67WMXEVvLYDli52ObDjELeS4QvLWX0iTLf9MPX08aA3ygiv9uMT6peTnq06udWB9nQp+cmY902P+dSiCMRBU+EHnSkvUmye6MDboioFa/nrH2c01MxnlSp+o7o4C0gciaLn5aiiJRuT8="
 install:
   - curl -L https://github.com/progrium/basht/releases/download/v0.1.0/basht_0.1.0_Linux_x86_64.tgz | tar -xz
 script:
+  - npm install -g snyk
   - ./basht wiper.bash
   - ./.travis/docker-build.sh
 after_script:
@@ -20,3 +25,4 @@ deploy:
   on:
     branch: master
     tags: true
+
